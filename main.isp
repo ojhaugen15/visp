@@ -128,7 +128,7 @@ body_node.addEventListener 'keyup' secondaryAction
 :i :areSame current_x 0;
 ::a line2 line1
 ::a line1 ''
-::a current_x null
+::a current_x :addNumbers current_x 1;
 :a newLine :addLine current_y;
 :setValue current_line 'innerHTML' :toHTML line1;
 :setValue newLine 'innerHTML' :toHTML line2;
@@ -164,7 +164,7 @@ body_node.addEventListener 'keyup' secondaryAction
 ::i :areSame replacementIndex searchIndex;
 :::a operativeNode keyNode
 :::a keyNode null
-:::a searchIndex null
+:::a searchIndex :addNumbers searchIndex 1;
 ::a searchIndex :addNumbers searchIndex 1;
 ::a keyNode :y keyNode;
 :y operativeNode :y :y operativeNode;;
@@ -179,19 +179,23 @@ body_node.addEventListener 'keyup' secondaryAction
 ::i :areSame currentCharacter ' ';
 :::a spaceCode space_code
 :::y previousNode spaceCode
-:::y :o spaceCode; :y currentNode; stringValue 
+:::y :o spaceCode; :y currentNode; stringValue
+:::a currentCharacter null
 ::i :areSame currentCharacter '<';
 :::a leftBracket left_bracket
 :::y previousNode leftBracket
 :::y :o leftBracket; :y currentNode; stringValue
+:::a currentCharacter null
 ::i :areSame currentCharacter '>';
 :::a rightBracket right_bracket
 :::y previousNode rightBracket
 :::y :o rightBracket; :y currentNode; stringValue
+:::a currentCharacter null
 ::i :areSame currentCharacter '&';
 :::a andSymbol and_symbol
 :::y previousNode andSymbol
 :::y :o andSymbol; :y currentNode; stringValue
+:::a currentCharacter null
 ::a previousNode currentNode;
 ::a currentNode :y currentNode;
 :e stringValue
@@ -229,6 +233,9 @@ body_node.addEventListener 'keyup' secondaryAction
 :::::setValue createdLine 'innerHTML' :toHTML newLine;
 :::::a newLine ''
 :::::a currentCharacter ''
+:::::a nextCharacter ''
+::::a nextCharacter ''
+:::a currentCharacter ''
 ::o newLine currentCharacter
 ::a searchIndex :addNumbers searchIndex 1;
 :a current_x 0
@@ -305,8 +312,9 @@ body_node.addEventListener 'keyup' secondaryAction
 
 :pasteSelection inheritedNode
 :a currentNode copied_text
-:i :arentSame currentNode undefined;
+:i :arentSame inheritedNode undefined;
 ::a currentNode inheritedNode
+::a inheritedNode undefined
 :a currentLine currentNode
 :i :arentSame currentNode null;
 ::i :areSame :u currentNode; '\n';
@@ -647,12 +655,13 @@ body_node.addEventListener 'keyup' secondaryAction
 ::i :areSame :u currentNode; firstCharacter;
 :::a string1 :y currentNode;
 :::a string2 :y searchTerm;
-:::i :areSame string1 string2;
+:::i :areSame :u string1; :u string2;;
 ::::a string1 :y string1;
 ::::a string2 :y string2;
 ::::i :areSame string1 null;
 :::::i :areSame string2 null;
 ::::::e true
+::::e false
 :::e lineContains :y currentNode; searchTerm 
 ::a currentNode :y currentNode;
 :e false
