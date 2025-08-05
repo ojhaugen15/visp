@@ -25,6 +25,8 @@ a copied_text ''
 a search_mode false
 a search_term ''
 a function_lookup 0
+a undone_state ''
+a previous_state ''
 
 a body_node :getValue document 'body';
 a body_style :getValue body_node 'style';
@@ -49,6 +51,10 @@ setCursor
 a current_line :addLine;
 body_node.addEventListener 'keydown' executeAction
 body_node.addEventListener 'keyup' secondaryAction
+
+:restartUndo
+:a previous_state :getContent;
+:a undo_mode false
 
 :addLine addAfter
 :a new_line :document.createElement 'div';
@@ -328,6 +334,7 @@ body_node.addEventListener 'keyup' secondaryAction
 
 :executeCommand keyPressed
 :i :areSame keyPressed 'i';
+::restartUndo
 ::a command_mode false
 ::e
 :i :areSame keyPressed ';';
@@ -365,9 +372,11 @@ body_node.addEventListener 'keyup' secondaryAction
 ::highlightLine current_y
 ::e
 :i :areSame keyPressed 'p';
+::restartUndo
 ::pasteSelection
 ::e
 :i :areSame keyPressed 'x';
+::restartUndo
 ::copySelection
 ::removeSelection
 ::e
@@ -377,7 +386,7 @@ body_node.addEventListener 'keyup' secondaryAction
 :i :areSame keyPressed 'r';
 ::i :arentSame undo_mode true;
 :::e
-::a undo_mode false
+::restartUndo
 ::a previous_state :getContent;
 ::clearContent
 ::setContent undone_state
@@ -450,6 +459,7 @@ body_node.addEventListener 'keyup' secondaryAction
 ::setCursor
 ::e
 :i :areSame keyPressed 'd';
+::restartUndo
 ::a lineContent :getValue currentLine 'textContent';
 ::a searchIndex 0
 ::a currentNode lineContent
@@ -470,6 +480,7 @@ body_node.addEventListener 'keyup' secondaryAction
 :::a searchIndex :addNumbers searchIndex 1;
 ::e
 :i :areSame keyPressed 'q';
+::restartUndo
 ::body_node.removeChild current_line
 ::a current_x 0
 ::i :areSame current_y 0;
@@ -569,6 +580,7 @@ body_node.addEventListener 'keyup' secondaryAction
 ::localStorage.setItem storage_name :getContent;
 ::e
 :i :areSame keyPressed 'z';
+::restartUndo
 ::clearContent
 ::setContent :localStorage.getItem storage_name;
 ::a current_x 0
