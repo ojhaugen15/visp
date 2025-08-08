@@ -136,7 +136,7 @@ body_node.addEventListener 'keyup' secondaryAction
 :i :areSame current_x 0;
 ::a line2 line1
 ::a line1 ''
-::a current_x :addNumbers current_x 1;
+::a current_x null
 :a newLine :addLine current_y;
 :setValue current_line 'innerHTML' :toHTML line1;
 :setValue newLine 'innerHTML' :toHTML line2;
@@ -172,7 +172,7 @@ body_node.addEventListener 'keyup' secondaryAction
 ::i :areSame replacementIndex searchIndex;
 :::a operativeNode keyNode
 :::a keyNode null
-:::a searchIndex :addNumbers searchIndex 1;
+:::a replacementIndex null
 ::a searchIndex :addNumbers searchIndex 1;
 ::a keyNode :y keyNode;
 :y operativeNode :y :y operativeNode;;
