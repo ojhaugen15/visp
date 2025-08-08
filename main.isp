@@ -97,6 +97,8 @@ body_node.addEventListener 'keyup' secondaryAction
 :::e
 ::i :areSame keyPressed ' ';
 :::keyEvent.preventDefault
+:::insertCharacter ' '
+:::e
 ::insertCharacter keyPressed
 ::e
 :executeCommand keyPressed
