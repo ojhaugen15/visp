@@ -6,7 +6,7 @@ a font_style 'Courier'
 a editor_background 'black'
 a body_padding 10
 a breathing_room 10
-a storage_name 'minivumojhaugen'
+a storage_name 'vispojhaugen'
 a cursor_opacity '0.4'
 a space_code '&nbsp;'
 a left_bracket '&lt;'
