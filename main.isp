@@ -679,30 +679,3 @@ body_node.addEventListener 'keyup' secondaryAction
 :::e lineContains :y currentNode; searchTerm 
 ::a currentNode :y currentNode;
 :e false
-
-
-///
-
-
-SIMPLE UTILITY FUNCTIONS
-
-arentSame
-areSame
-differenceNumbers
-addNumbers
-firstGreater
-multiplyNumbers
-getValue
-setValue
-
-roundNumber
-quotientNumbers
-
-
-
-
-
-
-
-
-
