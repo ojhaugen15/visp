@@ -58,10 +58,10 @@ body_node.addEventListener 'keyup' secondaryAction
 
 :addLine addAfter
 :a new_line :document.createElement 'div';
-:setValue new_line 'textContent'
 :a line_style :getValue new_line 'style';
 :setValue line_style 'width' '100%'
 :setValue line_style 'height' font_size
+:setValue new_line 'className' 'vim-line'
 :i :arentSame addAfter undefined;
 ::a editorContent :getValue body_node 'children';
 ::a targetElement :getValue editorContent :addNumbers addAfter nonline_elements;;
@@ -73,6 +73,16 @@ body_node.addEventListener 'keyup' secondaryAction
 :setCursor
 :setValue cursor_style 'top' :addNumbers :multiplyNumbers font_size current_y; cursor_padding;
 :setValue cursor_style 'left' :addNumbers :multiplyNumbers character_width current_x; cursor_padding;
+
+:countNonline
+:a editorContent :getValue body_node 'children';
+:a searchIndex 0
+:a contentSize :getValue editorContent 'length';
+:i :firstGreater contentSize searchIndex;
+::i :areSame 'vim-line' :getValue :getValue editorContent searchIndex; 'className';;
+:::e searchIndex
+::searchIndex :addNumbers searchIndex 1;
+:e searchIndex
 
 :executeAction keyEvent
 :a keyPressed :getValue keyEvent 'key';
@@ -344,7 +354,7 @@ body_node.addEventListener 'keyup' secondaryAction
 ::a oldProgram :getElement interior_program;
 ::i :arentSame oldProgram undefined;
 :::body_node.removeChild oldProgram
-::nonline_elements 3
+::nonline_elements :countNonline;
 ::a programElement :document.createElement 'script';
 ::setValue 'text' newProgram
 ::setValue 'id' interior_program
